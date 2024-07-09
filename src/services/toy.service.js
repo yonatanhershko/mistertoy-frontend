@@ -1,55 +1,54 @@
+
 import { utilService } from './util.service.js'
-// import { httpService } from './http.service.js'
-import { storageService } from './async-storage.service.js'
+import { httpService } from './http.service.js'
 
-
-const TOY_KEY = 'toyDB'
-const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle',
-    'Outdoor', 'Battery Powered']
-    _createToys()
+const BASE_URL = 'toy/'
 
 export const toyService = {
     query,
     get,
-    remove,
     save,
-    getDefaultFilter,
+    remove,
     getEmptyToy,
+    getDefaultFilter,
     getDefaultSort,
     getFilterFromSearchParams,
     getSortFromSearchParams
 }
 
 
-
-function query(filterBy = {}, sortBy) {
-    return storageService.query(TOY_KEY)
-        .then(toys => {
-            toys = _filter(toys, filterBy)
-            toys = _sort(toys, sortBy)
-            return toys
-        })
+function query(filterBy = {}, sortBy = {}) {
+    const filterAndSort = { ...filterBy, sortBy: sortBy.field, sortDir: sortBy.dir === 1 ? 'asc' : 'desc' };
+    return httpService.get(BASE_URL, filterAndSort);
 }
 
 function get(toyId) {
-    return storageService.get(TOY_KEY, toyId)
-}
+    return httpService.get(BASE_URL + toyId)
 
+}
 function remove(toyId) {
-    return storageService.remove(TOY_KEY, toyId)
+    return httpService.delete(BASE_URL + toyId)
 }
 
 function save(toy) {
     if (toy._id) {
-        return storageService.put(TOY_KEY, toy)
+        return httpService.put(BASE_URL, toy)
     } else {
-        return storageService.post(TOY_KEY, toy)
+        return httpService.post(BASE_URL, toy)
     }
 }
 
-function getEmptyToy(name = '', price = '') {
-    return { name, price }
+
+function getEmptyToy() {
+    return {
+        name: '',
+        price: '',
+        inStock: Math.random() < 0.8,
+        labels: [],
+        createdAt: Date.now() - utilService.getRandomIntInclusive(0, 10000000),
+    }
 }
+
 
 function getDefaultFilter() {
     return { name: '', price: '' }
@@ -58,6 +57,7 @@ function getDefaultFilter() {
 function getDefaultSort() {
     return { field: 'name', dir: 1 }
 }
+
 
 function getFilterFromSearchParams(searchParams) {
     const defaultFilter = getDefaultFilter()
@@ -73,71 +73,39 @@ function getFilterFromSearchParams(searchParams) {
     return filterBy
 }
 
-
 function getSortFromSearchParams(searchParams) {
     const defaultSort = getDefaultSort()
     const sortBy = {}
     for (const field in defaultSort) {
-        sortBy[field] = searchParams.get(field) || ''
+        if (searchParams.get(field) !== null) {
+            sortBy[field] = searchParams.get(field)
+        } else {
+            sortBy[field] = defaultSort[field]
+        }
     }
     return sortBy
 }
 
-function _filter(toys, filterBy) {
-    if (filterBy.name) {
-        const regExp = new RegExp(filterBy.name, 'i')
-        toys = toys.filter(toy => regExp.test(toy.name))
-    }
-    if (filterBy.price) {
-        toys = toys.filter(toy => toy.price.startsWith(filterBy.price))
-    }
-    return toys
-}
+// function _filter(toys, filterBy) {
+//     if (filterBy.name) {
+//         const regExp = new RegExp(filterBy.name, 'i')
+//         toys = toys.filter(toy => regExp.test(toy.name))
+//     }
+//     if (filterBy.price) {
+//         toys = toys.filter(toy => toy.price.startsWith(filterBy.price))
+//     }
+//     return toys
+// }
 
-function _sort(toys, sortBy) {
-    if (sortBy.field === 'name') {
-        toys = toys.toSorted((c1, c2) => c1.name.localeCompare(c2.name) * sortBy.dir)
-    } else if (sortBy.field === 'price') {
-        toys = toys.toSorted((c1, c2) => (c2.price - c1.price) * sortBy.dir)
-    }else if (sortBy.field === 'created') {
-        toys = toys.toSorted((c1, c2) => (c2.createdAt - c1.createdAt) * sortBy.dir)
-    }else if (sortBy.field === 'inStock') {
-        toys = toys.toSorted((c1, c2) => (c2.inStock - c1.inStock) * sortBy.dir)
-    }
-    return toys
-}
-
-
-
-function _createToys() {
-    let toys = utilService.loadFromStorage(TOY_KEY)
-    if (!toys || !toys.length) {
-        toys = []
-        toys.push(_createToy('Teddy Bear🧸'))
-        toys.push(_createToy('LEGO Set'))
-        toys.push(_createToy('Toy Train🚂'))
-        toys.push(_createToy('Yo-Yo🪀'))
-        toys.push(_createToy('Kite🪁'))
-        toys.push(_createToy('Dollhouset'))
-        toys.push(_createToy('Play-Doh'))
-        toys.push(_createToy('Action Figure'))
-        utilService.saveToStorage(TOY_KEY, toys)
-    }
-}
-
-function _createToy(name = '', price = `${utilService.getRandomIntInclusive(20, 250)}`) {
-    return {
-        _id: utilService.makeId(),
-        name,
-        price,
-        inStock: Math.random() < 0.8,
-        labels: _getRandomLabels(3),
-        createdAt: Date.now() - utilService.getRandomIntInclusive(0, 10000000),
-       
-    }
-}
-
-function _getRandomLabels(count) {
-    const shuffled = labels.sort(() => 0.5 - Math.random())
-    return shuffled.slice(0, count)
-}
+// function _sort(toys, sortBy) {
+//     if (sortBy.field === 'name') {
+//         toys = toys.toSorted((c1, c2) => c1.name.localeCompare(c2.name) * sortBy.dir)
+//     } else if (sortBy.field === 'price') {
+//         toys = toys.toSorted((c1, c2) => (c2.price - c1.price) * sortBy.dir)
+//     } else if (sortBy.field === 'created') {
+//         toys = toys.toSorted((c1, c2) => (c2.createdAt - c1.createdAt) * sortBy.dir)
+//     } else if (sortBy.field === 'inStock') {
+//         toys = toys.toSorted((c1, c2) => (c2.inStock - c1.inStock) * sortBy.dir)
+//     }
+//     return toys
+// }
