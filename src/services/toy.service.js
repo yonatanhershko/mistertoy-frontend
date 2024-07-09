@@ -101,6 +101,8 @@ function _sort(toys, sortBy) {
         toys = toys.toSorted((c1, c2) => (c2.price - c1.price) * sortBy.dir)
     }else if (sortBy.field === 'created') {
         toys = toys.toSorted((c1, c2) => (c2.createdAt - c1.createdAt) * sortBy.dir)
+    }else if (sortBy.field === 'inStock') {
+        toys = toys.toSorted((c1, c2) => (c2.inStock - c1.inStock) * sortBy.dir)
     }
     return toys
 }
