@@ -61,10 +61,10 @@ export function ToyIndex() {
 
     return (
         <div>
-            <h3 className='text-center'>Toys App🧸🪀</h3>
+            <h3 className='text-center '>Toys App🧸🪀</h3>
             <main>
                 <section className='add-container text-center'>
-                    <button className='btn btn-add'><Link to='/toy/edit'>Add New Toy</Link></button>
+                    <button className='btn add-btn'><Link to='/toy/edit'>Add New Toy</Link></button>
                 </section>
                 <section className='text-center' >
                     <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
@@ -72,7 +72,7 @@ export function ToyIndex() {
                 </section>
 
                 <ToyList toys={toys} onDeleteToy={onDeleteToy} />
-                {!toys.length && <h2>No toys to display</h2>}
+                {!toys.length && <h2>No toys to display😶‍🌫️</h2>}
             </main>
         </div>
     )

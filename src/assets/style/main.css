@@ -1,18 +1,19 @@
 
 
 /* Setup */
-/* @import 'setup/vars.css';
-@import 'setup/typography.css'; */
+@import 'setup/vars.css';
+/* @import 'setup/typography.css'; */
 
 @import "base/base.css";
 @import 'base/helpers.css';
 
 
-/* @import "pages/ToysIndex.css"; */
+@import "pages/ToysIndex.css";
 @import "pages/ToysList.css";
 @import "pages/AppHeader.css";
 @import 'cmps/ToyPreview.css';
 @import 'cmps/ToySort.css';
+@import 'cmps/ToyFilter.css';
 
-/* @import "pages/ToysEdit.css";
-@import "pages/ToysDetails.css"; */
+@import "pages/ToysEdit.css";
+@import "pages/ToysDetails.css";

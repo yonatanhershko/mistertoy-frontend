@@ -22,7 +22,7 @@ export function ToyDetails() {
             <h1>Toy Details</h1>
             <p>Name:{toy.name}</p>
             <p>Price:${toy.price}</p>
-            <h2>{toy.inStock ? 'In Stock' : 'Out of Stock'}</h2>
+            <h2>{toy.inStock ? 'In Stock🦔' : 'Out of Stock😶‍🌫️'}</h2>
 
             <Link to="/toy">Back to Toys</Link>
         </section>
