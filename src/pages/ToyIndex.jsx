@@ -39,10 +39,9 @@ export function ToyIndex() {
 
     return (
         <div>
-            <h3>Toys App</h3>
+            <h3 className='text-center'>Toys App🧸🪀</h3>
             <main>
 
-                <h2>yeyyy</h2>
                 {!toys.length && <h2>No toys to display</h2>}
                 <ToyList toys={toys} onDeleteToy={onDeleteToy} />
             </main>

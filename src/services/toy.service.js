@@ -111,21 +111,26 @@ function _createToys() {
     let toys = utilService.loadFromStorage(TOY_KEY)
     if (!toys || !toys.length) {
         toys = []
-        toys.push(_createToy('Teddy Bear'))
+        toys.push(_createToy('Teddy Bear🧸'))
         toys.push(_createToy('LEGO Set'))
-        toys.push(_createToy('Toy Train'))
-        toys.push(_createToy('Yo-Yo'))
+        toys.push(_createToy('Toy Train🚂'))
+        toys.push(_createToy('Yo-Yo🪀'))
+        toys.push(_createToy('Kite🪁'))
+        toys.push(_createToy('Dollhouset'))
+        toys.push(_createToy('Play-Doh'))
+        toys.push(_createToy('Action Figure'))
         utilService.saveToStorage(TOY_KEY, toys)
     }
 }
 
-function _createToy(name = 'Muki Dee', price = `${utilService.getRandomIntInclusive(20, 250)}`) {
+function _createToy(name = '', price = `${utilService.getRandomIntInclusive(20, 250)}`) {
     return {
         _id: utilService.makeId(),
         name,
         price,
+        inStock: Math.random() < 0.8,
         // labels: ['Doll', 'Battery Powered', 'Baby'],
         // createdAt: 1631031801011,
-        // inStock: true,
+       
     }
 }
