@@ -1,14 +1,14 @@
 import { toyService } from "../../services/toy.service.js";
 // import { showSuccessMsg } from "../../services/event-bus.service.js";
-import { ADD_TOY,  REMOVE_TOY, SET_TOYS,SET_FILTER_BY, SET_IS_LOADING, UPDATE_TOY } from "../reducers/toy.reducer.js";
+import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_FILTER_BY, SET_SORT_BY, SET_IS_LOADING, UPDATE_TOY } from "../reducers/toy.reducer.js";
 import { store } from "../store.js";
 
 
 
-export function loadToys(filterBy) {
+export function loadToys(filterBy,sortBy) {
 
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-    return toyService.query(filterBy)
+    return toyService.query(filterBy,sortBy)
         .then(toys => {
             store.dispatch({
                 type: SET_TOYS,
@@ -60,6 +60,6 @@ export function setFilterBy(filterBy) {
     store.dispatch({ type: SET_FILTER_BY, filterBy })
 }
 
-// export function setSortBy(sortBy) {
-//     store.dispatch({ type: SET_SORT_BY , sortBy})
-// }
+export function setSortBy(sortBy) {
+    store.dispatch({ type: SET_SORT_BY, sortBy })
+}

@@ -26,7 +26,7 @@ function query(filterBy = {}, sortBy) {
     return storageService.query(TOY_KEY)
         .then(toys => {
             toys = _filter(toys, filterBy)
-            // toys = _sort(toys, sortBy)
+            toys = _sort(toys, sortBy)
             return toys
         })
 }
@@ -74,8 +74,6 @@ function getFilterFromSearchParams(searchParams) {
 }
 
 
-//filter &sort
-
 function getSortFromSearchParams(searchParams) {
     const defaultSort = getDefaultSort()
     const sortBy = {}
@@ -101,6 +99,8 @@ function _sort(toys, sortBy) {
         toys = toys.toSorted((c1, c2) => c1.name.localeCompare(c2.name) * sortBy.dir)
     } else if (sortBy.field === 'price') {
         toys = toys.toSorted((c1, c2) => (c2.price - c1.price) * sortBy.dir)
+    }else if (sortBy.field === 'created') {
+        toys = toys.toSorted((c1, c2) => (c2.createdAt - c1.createdAt) * sortBy.dir)
     }
     return toys
 }
@@ -129,8 +129,13 @@ function _createToy(name = '', price = `${utilService.getRandomIntInclusive(20, 
         name,
         price,
         inStock: Math.random() < 0.8,
-        // labels: ['Doll', 'Battery Powered', 'Baby'],
-        // createdAt: 1631031801011,
+        labels: _getRandomLabels(3),
+        createdAt: Date.now() - utilService.getRandomIntInclusive(0, 10000000),
        
     }
+}
+
+function _getRandomLabels(count) {
+    const shuffled = labels.sort(() => 0.5 - Math.random())
+    return shuffled.slice(0, count)
 }

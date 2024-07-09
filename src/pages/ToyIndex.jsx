@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 import { toyService } from '../services/toy.service.js'
-import { loadToys, removeToy, setFilterBy } from '../store/actions/toy.actions.js'
+import { loadToys, removeToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
 
+import { ToySort } from '../cmps/ToySort.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { ToyList } from '../cmps/ToyList.jsx'
 
@@ -17,36 +18,36 @@ export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
-    // const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
+    const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
 
 
     const [searchParams, setSearchParams] = useSearchParams()
 
     const defaultFilter = toyService.getFilterFromSearchParams(searchParams)
-    // const defaultSort = toyService.getSortFromSearchParams(searchParams)
+    const defaultSort = toyService.getSortFromSearchParams(searchParams)
 
 
     useEffect(() => {
-        setSearchParams({ ...filterBy})
-        loadToys(filterBy)
+        setSearchParams({ ...filterBy, ...sortBy })
+        loadToys(filterBy, sortBy)
             .catch(() => {
                 console.log('Could not load toys')
             })
-    }, [filterBy])
+    }, [filterBy, sortBy])
 
 
     useEffect(() => {
         setFilterBy(defaultFilter)
-        // setSortBy(defaultSort)
+        setSortBy(defaultSort)
     }, [])
 
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
     }
 
-    // function onSetSortBy(sortBy) {
-    //     setSortBy(sortBy)
-    // }
+    function onSetSortBy(sortBy) {
+        setSortBy(sortBy)
+    }
 
     function onDeleteToy(toyId) {
         removeToy(toyId)
@@ -62,10 +63,13 @@ export function ToyIndex() {
         <div>
             <h3 className='text-center'>Toys App🧸🪀</h3>
             <main>
-                <article className='add-container text-center'>
+                <section className='add-container text-center'>
                     <button className='btn btn-add'><Link to='/toy/edit'>Add New Toy</Link></button>
-                </article>
-                <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+                </section>
+                <section className='text-center' >
+                    <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+                    <ToySort onSetSortBy={onSetSortBy} />
+                </section>
 
                 <ToyList toys={toys} onDeleteToy={onDeleteToy} />
                 {!toys.length && <h2>No toys to display</h2>}
