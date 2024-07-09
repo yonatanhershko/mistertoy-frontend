@@ -22,10 +22,10 @@ export const toyService = {
 
 
 
-function query(filterBy, sortBy) {
+function query(filterBy = {}, sortBy) {
     return storageService.query(TOY_KEY)
         .then(toys => {
-            // toys = _filter(toys, filterBy)
+            toys = _filter(toys, filterBy)
             // toys = _sort(toys, sortBy)
             return toys
         })
@@ -52,7 +52,7 @@ function getEmptyToy(name = '', price = '') {
 }
 
 function getDefaultFilter() {
-    return { txt: '', price: '' }
+    return { name: '', price: '' }
 }
 
 function getDefaultSort() {
@@ -86,8 +86,8 @@ function getSortFromSearchParams(searchParams) {
 }
 
 function _filter(toys, filterBy) {
-    if (filterBy.txt) {
-        const regExp = new RegExp(filterBy.txt, 'i')
+    if (filterBy.name) {
+        const regExp = new RegExp(filterBy.name, 'i')
         toys = toys.filter(toy => regExp.test(toy.name))
     }
     if (filterBy.price) {

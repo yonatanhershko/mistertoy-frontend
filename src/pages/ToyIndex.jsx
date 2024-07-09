@@ -1,10 +1,13 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { toyService } from '../services/toy.service.js'
-import { loadToys,removeToy } from '../store/actions/toy.actions.js'
 
+
+import { toyService } from '../services/toy.service.js'
+import { loadToys, removeToy, setFilterBy } from '../store/actions/toy.actions.js'
+
+import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { ToyList } from '../cmps/ToyList.jsx'
 
 
@@ -12,20 +15,38 @@ export function ToyIndex() {
 
     const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)
-    // const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
+    const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
+    // const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
+
+
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const defaultFilter = toyService.getFilterFromSearchParams(searchParams)
+    // const defaultSort = toyService.getSortFromSearchParams(searchParams)
+
 
     useEffect(() => {
-        loadToys()
-            .catch(err => {
-                console.log('err', err)
-                // showErrorMsg('Cannot load toys!')
+        setSearchParams({ ...filterBy})
+        loadToys(filterBy)
+            .catch(() => {
+                console.log('Could not load toys')
             })
+    }, [filterBy])
+
+
+    useEffect(() => {
+        setFilterBy(defaultFilter)
+        // setSortBy(defaultSort)
     }, [])
 
+    function onSetFilter(filterBy) {
+        setFilterBy(filterBy)
+    }
 
-
-
+    // function onSetSortBy(sortBy) {
+    //     setSortBy(sortBy)
+    // }
 
     function onDeleteToy(toyId) {
         removeToy(toyId)
@@ -41,11 +62,13 @@ export function ToyIndex() {
         <div>
             <h3 className='text-center'>Toys App🧸🪀</h3>
             <main>
-            <article className='add-container text-center'>
-                <button className='btn btn-add'><Link to='/toy/edit'>Add New Toy</Link></button>
-            </article>
-                {!toys.length && <h2>No toys to display</h2>}
+                <article className='add-container text-center'>
+                    <button className='btn btn-add'><Link to='/toy/edit'>Add New Toy</Link></button>
+                </article>
+                <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+
                 <ToyList toys={toys} onDeleteToy={onDeleteToy} />
+                {!toys.length && <h2>No toys to display</h2>}
             </main>
         </div>
     )
