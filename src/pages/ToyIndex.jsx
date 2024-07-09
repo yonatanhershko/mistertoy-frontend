@@ -41,7 +41,9 @@ export function ToyIndex() {
         <div>
             <h3 className='text-center'>Toys App🧸🪀</h3>
             <main>
-
+            <article className='add-container text-center'>
+                <button className='btn btn-add'><Link to='/toy/edit'>Add New Toy</Link></button>
+            </article>
                 {!toys.length && <h2>No toys to display</h2>}
                 <ToyList toys={toys} onDeleteToy={onDeleteToy} />
             </main>
