@@ -6,8 +6,8 @@
     padding-inline: 1em;
     height: 100px;
     width: 100%;
-    background-color: #ff8343;
-    color: #ffefd5;
+    background-color:var( --bgclr2);
+    color: var(--textclr1);
     box-shadow: 0 1px 6px rgb(0 0 0 / 0.5);
 }
 
@@ -23,4 +23,8 @@
 
 .nav-links *:hover {
     scale: 1.1;
+}
+
+.logo{
+   color: var(--logotextclr);
 }
