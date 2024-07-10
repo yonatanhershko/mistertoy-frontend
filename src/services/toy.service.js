@@ -3,7 +3,17 @@ import { utilService } from './util.service.js'
 import { httpService } from './http.service.js'
 
 const BASE_URL = 'toy/'
-
+const labels = [
+    'On wheels',
+    'Box game',
+    'Art',
+    'Baby',
+    'Doll',
+    'Puzzle',
+    'Outdoor',
+    'Battery Powered',
+  ]
+  
 export const toyService = {
     query,
     get,
@@ -13,7 +23,8 @@ export const toyService = {
     getDefaultFilter,
     getDefaultSort,
     getFilterFromSearchParams,
-    getSortFromSearchParams
+    getSortFromSearchParams,
+    getToyLabels,
 }
 
 
@@ -44,7 +55,7 @@ function getEmptyToy() {
         name: '',
         price: '',
         inStock: Math.random() < 0.8,
-        labels: [],
+        labels: _getRandomLabels(),
         createdAt: Date.now() - utilService.getRandomIntInclusive(0, 10000000),
     }
 }
@@ -85,6 +96,21 @@ function getSortFromSearchParams(searchParams) {
     }
     return sortBy
 }
+
+
+function getToyLabels() {
+    return [...labels]
+  }
+  
+  function _getRandomLabels() {
+    const labelsCopy = [...labels]
+    const randomLabels = []
+    for (let i = 0; i < 2; i++) {
+      const randomIdx = Math.floor(Math.random() * labelsCopy.length)
+      randomLabels.push(labelsCopy.splice(randomIdx, 1)[0])
+    }
+    return randomLabels
+  }
 
 // function _filter(toys, filterBy) {
 //     if (filterBy.name) {

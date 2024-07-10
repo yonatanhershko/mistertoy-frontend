@@ -6,6 +6,7 @@ import { ToyIndex } from "./pages/ToyIndex.jsx"
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { Home } from "./pages/Home.jsx"
+import { About } from "./pages/About.jsx"
 import { store } from "./store/store.js"
 import { AppHeader } from "./cmps/AppHeader.jsx"
 
@@ -22,6 +23,7 @@ export function App() {
                     <AppHeader />
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
                         <Route path="/toy" element={<ToyIndex />} />
                         <Route path="/toy/edit/:toyId" element={<ToyEdit />} />
                         <Route path="/toy/edit" element={<ToyEdit />} />

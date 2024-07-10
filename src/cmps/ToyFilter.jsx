@@ -1,8 +1,11 @@
 
 
-import { useEffect, useState, useRef  } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
+import { toyService } from '../services/toy.service.js'
 import { utilService } from "../services/util.service.js"
+
+const toyLabels = toyService.getToyLabels()
 
 export function ToyFilter({ filterBy, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
@@ -14,11 +17,16 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
     function handleChange({ target }) {
         let { value, name: field, type } = target
+        if (type === 'select-multiple') {
+            console.log('target.selectedOptions:', target.selectedOptions)
+            value = Array.from(target.selectedOptions, option => option.value || [])
+            console.log('value:', value)
+          }
         value = type === 'price' ? +value : value
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
-    const { name, price } = filterByToEdit
+    const { name, price ,labels} = filterByToEdit
 
     return (
         <section className="toy-filter">
@@ -37,6 +45,24 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                 placeholder="By price"
                 onChange={handleChange}
             />
+            <div>
+                <select
+                    multiple
+                    name="labels"
+                    value={labels || []}
+                    onChange={handleChange}
+                >
+                    <option value="">Labels</option>
+                    <>
+                        {toyLabels.map(label => (
+                            <option key={label} value={label}>
+                                {label}
+                            </option>
+                        ))}
+                    </>
+                </select>
+            </div>
+
         </section>
     )
 }
