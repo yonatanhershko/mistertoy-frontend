@@ -33,3 +33,20 @@
 
     font-family: hebrew-reg-font;
 }
+
+.about-where-shops{
+
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-block-end: 5px;
+
+
+    font-family: hebrew-reg-font;
+}
+
+.branch-buttons{
+    display: flex;
+    gap: 5px;
+    margin-block-end: 20px;
+}

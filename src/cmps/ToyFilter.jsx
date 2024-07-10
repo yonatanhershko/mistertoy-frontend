@@ -4,6 +4,8 @@ import { useEffect, useState, useRef } from 'react'
 
 import { toyService } from '../services/toy.service.js'
 import { utilService } from "../services/util.service.js"
+import TextField from '@mui/material/TextField';
+
 
 const toyLabels = toyService.getToyLabels()
 
@@ -29,22 +31,27 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     const { name, price ,labels} = filterByToEdit
 
     return (
-        <section className="toy-filter">
+        <section className="">
             <h2>Filter</h2>
-            <input type="text"
-                id="name"
+            <TextField 
+                id="name" 
+                label="By name" 
                 name="name"
+                variant="outlined" 
+                size='small'
                 value={name}
-                placeholder="By name"
                 onChange={handleChange}
             />
-            <input type="text"
-                id="price"
+            <TextField 
+                id="price" 
+                label="By price" 
+                variant="outlined" 
                 name="price"
+                size='small'
                 value={price}
-                placeholder="By price"
                 onChange={handleChange}
             />
+            
             <div>
                 <select
                     multiple
