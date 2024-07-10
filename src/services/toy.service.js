@@ -25,6 +25,7 @@ export const toyService = {
     getFilterFromSearchParams,
     getSortFromSearchParams,
     getToyLabels,
+    getImportanceStats
 }
 
 
@@ -111,6 +112,48 @@ function getToyLabels() {
     }
     return randomLabels
   }
+
+  function getImportanceStats() {
+    return httpService.get(BASE_URL)
+        .then(toys => {
+            const toyStatsByLabel = _getToyStatsByLabel(toys)
+            const data = labels.map(label => ({
+                label,
+                toyAmount: toyStatsByLabel[label]?.toyAmount || 0,
+                avgPrice: toyStatsByLabel[label]?.avgPrice || 0
+            }))
+            return data
+        })
+}
+
+function _getToyStatsByLabel(toys) {
+    const toyStatsByLabel = {}
+
+    labels.forEach(label => {
+        toyStatsByLabel[label] = { toyAmount: 0, totalPrice: 0, avgPrice: 0 }
+    })
+
+    toys.forEach(toy => {
+        toy.labels.forEach(label => {
+            toyStatsByLabel[label].toyAmount++
+            toyStatsByLabel[label].totalPrice += parseFloat(toy.price)
+        })
+    })
+
+    Object.keys(toyStatsByLabel).forEach(label => {
+        if (toyStatsByLabel[label].toyAmount > 0) {
+            toyStatsByLabel[label].avgPrice = (toyStatsByLabel[label].totalPrice / toyStatsByLabel[label].toyAmount).toFixed(2)
+            // Convert back to number
+            toyStatsByLabel[label].avgPrice = parseFloat(toyStatsByLabel[label].avgPrice)
+        } else {
+            toyStatsByLabel[label].avgPrice = 0
+        }
+    })
+
+    return toyStatsByLabel
+}
+
+
 
 // function _filter(toys, filterBy) {
 //     if (filterBy.name) {

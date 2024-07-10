@@ -18,9 +18,9 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     function handleChange({ target }) {
         let { value, name: field, type } = target
         if (type === 'select-multiple') {
-            console.log('target.selectedOptions:', target.selectedOptions)
+            // console.log('target.selectedOptions:', target.selectedOptions)
             value = Array.from(target.selectedOptions, option => option.value || [])
-            console.log('value:', value)
+            // console.log('value:', value)
           }
         value = type === 'price' ? +value : value
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
