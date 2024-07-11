@@ -1,4 +1,3 @@
-
 .about-section {
     display: flex;
     flex-direction: column-reverse;
@@ -29,22 +28,22 @@
     font-size: 18px;
     color: #555;
     line-height: 1.6;
-
-    font-family: hebrew-reg-font;
-}
-
-.about-where-shops{
+    // background-color: #ee7272;
+    font-family: hebrew-reg-font, sans-serif;
+    // font-family: Bahnschrift, sans-serif;
+  }
+  
+.about-where-shops {
 
     font-size: 18px;
     color: #555;
     line-height: 1.6;
     margin-block-end: 5px;
 
-
     font-family: hebrew-reg-font;
 }
 
-.branch-buttons{
+.branch-buttons {
     display: flex;
     gap: 5px;
     margin-block-end: 20px;

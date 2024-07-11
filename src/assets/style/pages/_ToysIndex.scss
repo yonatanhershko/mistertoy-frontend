@@ -2,9 +2,9 @@
 
 .add-btn {
     display: inline-block;
-    background-color: var(--specialbtnclr); 
+    background-color: $specialbtnclr; 
     border: none;
-    color: var(--textclr2); 
+    color:$textclr2; 
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -12,11 +12,16 @@
     padding: 10px 15px;
     border-radius: 5px; 
     transition: background-color 0.3s ease; 
+   
+    &:hover{
+    background-color:$spbtnhover; 
+    }
 
 
 }
 
-.add-btn:hover {
-    background-color: var(--spbtnhover); 
-}
+// .add-btn:hover {
+//     background-color:$spbtnhover; 
+// }
+
 

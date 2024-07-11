@@ -12,7 +12,7 @@ import { store } from "./store/store.js"
 import { AppHeader } from "./cmps/AppHeader.jsx"
 
 
-import "../src/assets/style/main.css"
+import "../src/assets/style/main.scss"
 
 export function App() {
 

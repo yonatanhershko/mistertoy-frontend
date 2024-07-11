@@ -1,0 +1,19 @@
+/* Setup */
+
+@import 'setup/vars';
+@import 'setup/typography';
+
+@import "base/base";
+@import 'base/helpers';
+@import 'base/layout';
+
+@import 'cmps/ToyPreview';
+@import 'cmps/ToySort';
+@import 'cmps/ToyFilter';
+
+@import "pages/ToysIndex";
+@import "pages/ToysList";
+@import "pages/AppHeader";
+@import "pages/About";
+@import "pages/ToysEdit";
+@import "pages/ToysDetails";

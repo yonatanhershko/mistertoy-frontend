@@ -14,11 +14,14 @@ export function ToyDetails() {
             .then(setToy)
         // .catch(err)
     }, [])
-
+    const generateRobohashUrl = (id) => {
+        return `https://robohash.org/${id}?set=set3`
+    }
 
     if (!toy) return <h3>Loading..</h3>
     return (
         <section className='details-container'>
+            <img src={generateRobohashUrl(toy._id)} alt={toy.name} style={{ width: '100px', height: '100px' }} />
             <h1>Toy Details</h1>
             <p>Name:{toy.name}</p>
             <p>Price:${toy.price}</p>

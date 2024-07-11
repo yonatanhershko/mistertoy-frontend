@@ -6,6 +6,7 @@
     padding-left: 0;
     gap: 0.6em;
     margin-block: 0.6em;
+    
 }
 
 .toy-list li {
@@ -13,8 +14,8 @@
     flex-direction: column;
     align-items: center; 
     justify-content: space-around;
-    background-color: var(--bgclr1);
-    color: var(--textclr2);
+    background-color: $bgclr1;
+    color: $textclr2;
     padding: 1em; 
     border-radius: 8px; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
@@ -47,30 +48,30 @@
   }
   
   .btn-details {
-    background-color: var( --btnclr);
-    color: var(--btntextclr);
+    background-color: $btnclr;
+    color: $btntextclr;
   }
   
   .btn-details:hover {
-    background-color: var( --btnhoverclr);
+    background-color: $btnhoverclr;
   }
   
   .btn-edit {
-    background-color: var( --btnclr);
-    color: var(--btntextclr);
+    background-color: $btnclr;
+    color: $btntextclr;
   }
   
   .btn-edit:hover {
-    background-color: var(  --btnhoverclr);
+    background-color: $btnhoverclr;
   }
   
   .btn-delete {
-    background-color: var( --btnclr);
-    color: var(--btntextclr);
+    background-color: $btnclr;
+    color: $btntextclr;
   }
   
   .btn-delete:hover {
-    background-color: var( --btnhoverclr);
+    background-color: $btnhoverclr;
   }
   
   @media (max-width: 600px) {
