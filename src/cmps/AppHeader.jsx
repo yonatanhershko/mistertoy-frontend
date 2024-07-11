@@ -7,7 +7,7 @@ export function AppHeader() {
     return (
         <section className=" header-bgcl full main-layout ">
             <header className="header-container" >
-                    <h2 className="logo">Mister Toy</h2>
+                    <h2 className="logo">Yona's ToyShop</h2>
                     <nav className="nav-links">
                         <NavLink to="/"> <HomeIcon /></NavLink>
                         <NavLink to="/about">About</NavLink>

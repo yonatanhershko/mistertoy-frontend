@@ -72,7 +72,7 @@ export function ToyIndex() {
                 </section>
 
                 <ToyList toys={toys} onDeleteToy={onDeleteToy} />
-                {!toys.length && <h2>No toys to display😶‍🌫️</h2>}
+                {!toys.length && <h2 className='text-center'>No toys to display😶‍🌫️</h2>}
             </main>
         </div>
     )
