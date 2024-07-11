@@ -1,0 +1,20 @@
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 980px 1fr;
+
+}
+
+.main-layout>*:not(.full) {
+  grid-column: 2;
+}
+
+.main-layout>*.full {
+  grid-column: 1 / -1;
+}
+
+.main-content-layout {
+  display: grid;
+
+  border-right: 1px solid var(--postnavclr);
+  border-left: 1px solid var(--postnavclr);
+}

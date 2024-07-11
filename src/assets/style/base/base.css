@@ -6,7 +6,7 @@
   
   body {
     margin: 0;
-    /* background-color: var(--bg); */
+    background-color: var(--bgclr3);
   }
   
   h1,

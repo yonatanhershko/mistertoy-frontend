@@ -20,7 +20,7 @@ export function App() {
    
      <Provider store={store}>
             <Router>
-                <div className="app-main-layout">
+                <div className="main-layout">
                     <AppHeader />
                     <Routes>
                         <Route path="/" element={<Home />} />

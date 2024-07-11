@@ -57,7 +57,7 @@ export function About() {
             </div>
             <h3 className="about-where-shops">איפה אנחנו</h3>
             <div className="about-container">
-                <h1 className="home-text">About</h1>
+                <h1 className="home-text text-center">About Us (But In Cool Hebrew Font) </h1>
                 <p className="about-info-text">
                     ברוכים הבאים לאתר הצעצועים הכי כיפי! 🌟 חולמים על עולם מלא בצעצועים מדליקים ומשחקים מרתקים? הגעתם למקום הנכון! אצלנו תמצאו מגוון עצום של צעצועים לכל הגילאים - החל מתינוקות ועד בני נוער, כולם ימצאו כאן משהו שהם יאהבו
                 </p>
