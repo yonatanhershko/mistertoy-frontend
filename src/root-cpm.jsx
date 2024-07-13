@@ -10,10 +10,11 @@ import { About } from "./pages/About.jsx"
 import { Dashboard } from "./pages/Dashboard.jsx"
 import { store } from "./store/store.js"
 import { AppHeader } from "./cmps/AppHeader.jsx"
+import { AppFooter } from './cmps/AppFooter.jsx'
+import { UserMsg } from "../src/cmps/UserMsg.jsx"
 
 
 import "../src/assets/style/main.scss"
-import { AppFooter } from './cmps/AppFooter.jsx'
 
 export function App() {
 
@@ -36,7 +37,7 @@ export function App() {
                     </Routes>
                     <AppFooter/>
                 </div>
-            
+            < UserMsg/>
             </Router>
        </Provider>
   )

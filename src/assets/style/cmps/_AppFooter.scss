@@ -5,10 +5,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .footer-links{
+
+        .footer-links {
             display: flex;
             gap: 15px;
             cursor: pointer;
+            margin-right: -4px;
         }
     }
 }

@@ -1,8 +1,8 @@
-import { toyService } from "../../services/toy.service.js";
-// import { showSuccessMsg } from "../../services/event-bus.service.js";
+import { toyService } from "../../services/toy.service.js"
 import { ADD_TOY, REMOVE_TOY, SET_TOYS, SET_FILTER_BY, SET_SORT_BY, SET_IS_LOADING, UPDATE_TOY } from "../reducers/toy.reducer.js";
-import { store } from "../store.js";
+import { store } from "../store.js"
 
+import { showToyMsg } from "../../services/event-bus.service.js"
 
 
 export function loadToys(filterBy,sortBy) {
@@ -49,6 +49,7 @@ export function removeToy(toyId) {
                 type: REMOVE_TOY,
                 toyId
             })
+            showToyMsg('Toy Deleted Successfully🦭')
         })
         .catch(err => {
             console.error('Cannot remove toy:', err)

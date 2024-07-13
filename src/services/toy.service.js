@@ -68,7 +68,7 @@ function getEmptyToy() {
     return {
         name: '',
         price: '',
-        inStock: Math.random() < 0.8,
+        inStock: true,
         labels: _getRandomLabels(),
         createdAt: Date.now() - utilService.getRandomIntInclusive(0, 10000000),
         bgColor: _getRandomBgColor()

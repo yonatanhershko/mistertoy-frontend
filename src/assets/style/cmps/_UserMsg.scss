@@ -1,0 +1,29 @@
+.user-msg {
+    position: fixed;
+    left: 1.5em;
+    bottom: 1.5em;
+
+    color: #fff;
+    background-color: #202124;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 3px 0px, rgba(60, 64, 67, 0.15) 0px 4px 8px 3px;
+    padding: 1em;
+
+    width: 348px;
+
+    border-radius: 4px;
+    z-index: 100;
+
+    p {
+        margin: 0;
+    }
+
+    button {
+        position: absolute;
+        right: 1em;
+        top: 18.5px;
+        cursor: pointer;
+        color: white;
+        background-color: inherit;
+        border: none;
+    }
+}

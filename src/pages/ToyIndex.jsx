@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 
 
@@ -14,7 +14,6 @@ import { ToyList } from '../cmps/ToyList.jsx'
 
 export function ToyIndex() {
 
-    const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
@@ -57,7 +56,8 @@ export function ToyIndex() {
     }
 
 
-    if (!toys) return <h3>Loading..</h3>
+    if (!toys) return <div className="loader-container"><span className="loader"></span> </div> 
+
 
     return (
         <div>
