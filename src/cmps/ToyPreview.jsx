@@ -12,13 +12,15 @@ export function ToyPreview({ toy }) {
 
     return (
         <article >
-        
-            <img src={generateRobohashUrl(toy._id)} alt={toy.name} style={{ width: '100px', height: '100px' }} />
+  
+            <img className="toy-img"src={generateRobohashUrl(toy._id)} alt={toy.name} style={{ width: '100px', height: '100px' }} />
             <h1>{toy.name}</h1>
             <h2>${toy.price}</h2>
-            <span className={`stock-status ${toy.inStock ? 'in-stock' : 'out-of-stock'}`}>
-                {toy.inStock ? 'In Stock' : 'Out of Stock'}
-            </span>
+            {toy.inStock ? (
+        <img className="stock-img" src="src/assets/img/1in.png" alt="In Stock" />
+    ) : (
+        <img className="stock-img" src="src/assets/img/2out.png" alt="Out of Stock" />
+    )}
         </article>
     )
 }

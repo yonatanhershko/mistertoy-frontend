@@ -10,6 +10,7 @@
     padding: 10px 15px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    margin-bottom: 15px;
 
     &:hover {
         background-color: $spbtnhover;
@@ -18,18 +19,23 @@
 
 }
 
-.home-img-container {
+.home-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 90vh;
+    position: relative;
+    background-image: url('src/assets/img/Yonas-shop-img.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; 
+    color: rgb(243, 249, 255); 
 
-    .home-img {
-        max-width: 80%;
-        max-height: 70%;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        border-radius: 10px;
+    .text-overlay {
+        position: absolute;
+        top: 20px; 
+        width: 70%;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5); 
+        padding: 10px;
+        border-radius: 10px; 
     }
 }

@@ -13,6 +13,7 @@ import { AppHeader } from "./cmps/AppHeader.jsx"
 
 
 import "../src/assets/style/main.scss"
+import { AppFooter } from './cmps/AppFooter.jsx'
 
 export function App() {
 
@@ -20,7 +21,7 @@ export function App() {
    
      <Provider store={store}>
             <Router>
-                <div className="main-layout">
+                <div className="main-layout app">
                     <AppHeader />
                     <Routes>
                         <Route path="/" element={<Home />} />
@@ -33,6 +34,7 @@ export function App() {
                         <Route path="/toy/:toyId" element={<ToyDetails />} />
 
                     </Routes>
+                    <AppFooter/>
                 </div>
             
             </Router>

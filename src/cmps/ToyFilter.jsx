@@ -3,7 +3,7 @@
 import { toyService } from '../services/toy.service.js'
 import { utilService } from "../services/util.service.js"
 import TextField from '@mui/material/TextField'
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useTheme } from '@mui/material/styles'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputLabel from '@mui/material/InputLabel'
@@ -59,7 +59,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     const { name, price, labels } = filterByToEdit
 
     return (
-        <section className="">
+        <section className="filter-container">
             <h2>Filter</h2>
             <TextField
                 id="name"
@@ -92,7 +92,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         input={<OutlinedInput label="Labels" />}
                         MenuProps={MenuProps}
                     >
-                    
+
                         {toyLabels.map((label) => (
                             <MenuItem
                                 key={label}

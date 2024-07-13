@@ -10,10 +10,13 @@
 @import 'cmps/ToyPreview';
 @import 'cmps/ToySort';
 @import 'cmps/ToyFilter';
+@import 'cmps/AppFooter';
 
 @import "pages/ToysIndex";
 @import "pages/ToysList";
 @import "pages/AppHeader";
 @import "pages/About";
 @import "pages/ToysEdit";
-@import "pages/ToysDetails";
+@import "pages/ToysDetails"; 
+
+@import "mq/mq"

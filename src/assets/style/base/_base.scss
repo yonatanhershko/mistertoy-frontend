@@ -8,7 +8,8 @@
     margin: 0;
     background-color: var(--bgclr3);
   }
-  
+  span,
+  p,
   h1,
   h2,
   h3,
@@ -52,4 +53,21 @@
   .done {
     text-decoration: line-through;
     font-style: italic;
+  }
+
+  .main-screen {
+    opacity: 0;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    pointer-events: none;
+
+    transition: opacity 0.8s;
+  }
+  
+
+  body.menu-open .main-screen {
+    opacity: 1;
+    pointer-events: auto;
   }
