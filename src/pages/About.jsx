@@ -5,15 +5,14 @@ import GoogleMapReact from 'google-map-react';
 
 const AnyReactComponent = ({ text }) => <div style={{ fontSize: '2em' }}>{text}</div>;
 const shopBranches = [
-    { id: 1, name: '🦛', coords: { lat: 32.0853, lng: 34.7818 } },
-    { id: 2, name: '🐲', coords: { lat: 32.0744, lng: 34.7920 } },
-    { id: 3, name: '🦔', coords: { lat: 32.0678, lng: 34.7705 } },
-    { id: 4, name: '🐫', coords: { lat: 32.0278, lng: 34.7650 } },
-
+    { id: 1, name: '🦛', place: 'תל-אביב', coords: { lat: 32.0853, lng: 34.7818 } },
+    { id: 2, name: '🐲', place: 'אילת', coords: { lat: 29.55805, lng: 34.94821 } },
+    { id: 3, name: '🦔', place: 'עפולה', coords: { lat: 32.6074, lng: 35.2882 } },
+    { id: 4, name: '🐫', place: 'באר-שבע', coords: { lat: 31.25297, lng: 34.79146 } }
 ]
 
 export function About() {
-    useState
+    
 
     const [selectedBranch, setSelectedBranch] = useState(null)
     const [mapCenter, setMapCenter] = useState(shopBranches[0].coords)
@@ -50,8 +49,9 @@ export function About() {
             </div>
             <div className="branch-buttons">
                 {shopBranches.map(branch => (
-                    <button key={branch.id} onClick={() => handleClick(branch)}>
+                    <button className="About-places" key={branch.id} onClick={() => handleClick(branch)}>
                         {branch.name}
+                        <span className="tooltip-text">{branch.place}</span>
                     </button>
                 ))}
             </div>
@@ -65,7 +65,7 @@ export function About() {
                     🎉 הנחות מטורפות ומבצעים מיוחדים! כל שבוע אנחנו מפתיעים אתכם עם הנחות מדהימות ומבצעים שאי אפשר לפספס אל תפספסו את ההזדמנות לקנות את הצעצועים הכי טובים במחירים הכי משתלמים
                 </p>
                 <p className="about-info-text">
-                    
+
                     📚אצלנו תמצאו צעצועים שמפתחים את היצירתיות, החשיבה והמיומנויות החברתיות של הילדים שלכם משחקים לימודיים, פאזלים, ערכות יצירה ועוד הרבה הפתעות מחכות לכם כאן
                 </p>
                 <p className="about-info-text">

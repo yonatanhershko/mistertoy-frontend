@@ -14,6 +14,16 @@ const labels = [
     'Battery Powered',
   ]
   
+  const bgColors = [
+    'white',
+    '#f6e2dd',
+    '#f39f76',
+    '#fff8b8',
+    '#e2f6d3',
+    '#d3bfdb',
+    '#aeccdc',
+]
+
 export const toyService = {
     query,
     get,
@@ -25,7 +35,9 @@ export const toyService = {
     getFilterFromSearchParams,
     getSortFromSearchParams,
     getToyLabels,
-    getImportanceStats
+    getImportanceStats,
+    getBgColors
+  
 }
 
 
@@ -58,6 +70,7 @@ function getEmptyToy() {
         inStock: Math.random() < 0.8,
         labels: _getRandomLabels(),
         createdAt: Date.now() - utilService.getRandomIntInclusive(0, 10000000),
+        bgColor: _getRandomBgColor()
     }
 }
 
@@ -112,6 +125,19 @@ function getToyLabels() {
     }
     return randomLabels
   }
+
+
+
+  function getBgColors() {
+    return [...bgColors]
+}
+
+function _getRandomBgColor() {
+    const bgColorsCopy = [...bgColors]
+    const randomIdx = Math.floor(Math.random() * bgColorsCopy.length)
+    return bgColorsCopy[randomIdx]
+}
+
 
   function getImportanceStats() {
     return httpService.get(BASE_URL)

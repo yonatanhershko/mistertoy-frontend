@@ -1,22 +1,35 @@
-
-
 .add-btn {
     display: inline-block;
-    background-color: $specialbtnclr; 
+    background-color: $specialbtnclr;
     border: none;
-    color:$textclr2; 
+    color: $textclr2;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
     padding: 10px 15px;
-    border-radius: 5px; 
-    transition: background-color 0.3s ease; 
-   
-    &:hover{
-    background-color:$spbtnhover; 
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $spbtnhover;
     }
 
 
 }
 
+.home-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+
+    .home-img {
+        max-width: 80%;
+        max-height: 70%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+}
