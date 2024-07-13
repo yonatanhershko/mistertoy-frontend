@@ -36,7 +36,8 @@ export const toyService = {
     getSortFromSearchParams,
     getToyLabels,
     getImportanceStats,
-    getBgColors
+    getBgColors,
+    toggleMenu
   
 }
 
@@ -177,6 +178,11 @@ function _getToyStatsByLabel(toys) {
     })
 
     return toyStatsByLabel
+}
+
+function toggleMenu() {
+    document.body.classList.toggle("menu-open")
+
 }
 
 

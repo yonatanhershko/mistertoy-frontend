@@ -1,7 +1,8 @@
 .header-bgcl {
-    background-color: $bgclr2;
-    box-shadow: 0 1px 6px rgb(0 0 0 / 0.5);
-    color: $textclr1;
+    // background-color: $bgclr3;
+    // box-shadow: 0 1px 6px rgb(0 0 0 / 0.5);
+    border-bottom: 1px solid rgb(211, 211, 211);
+    color: $textclr2;
 }
 
 
@@ -13,25 +14,105 @@
     width: 100%;
 
     .nav-links {
+        margin-top: 15px;
         display: flex;
         gap: 1em;
         font-size: 1.2em;
-        >*:hover{
-            scale: 1.1;
-
-        }
-        
+        font-family: "Edu VIC WA NT Beginner", cursive;
     }
 
-}
+    .nav-links>*:hover {
+        transform: scale(1.1);
+        background-color: $logotextclr;
 
+        padding: 0 14px;
+    }
+}
 
 .nav-links * {
-    transition: scale .3s;
+    transition: all 0.3s;
+    border-radius: 5px;
 }
-
 
 .logo {
     color: $logotextclr ;
+    margin: 0;
+   
+
+    // filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.5));
 
 }
+
+
+/* Hamburger */
+.btn-toggle-menu {
+    // background-color: #252525;
+    color: #252525;
+    border: 0;
+    cursor: pointer;
+    border-radius: 5px;
+    .hamburger-lines {
+        height: 26px;
+       margin-right: 10px;
+        border-radius: 5px;
+        display: flex;
+    
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+ .menu-btn-display{
+    display: none;
+ }
+
+ .hamburger-lines svg {
+    font-size: 36px; 
+  }
+
+
+.main-header-mobile {
+    position: fixed;
+    top: 0;
+    right: 171px;
+    height: 46%;
+    background-color: rgba(157, 157, 157, 0.8);
+    width: 100%;
+    max-width: 172px;
+    transform: translateX(100%);
+    border-radius: 0 0 10px 10px;
+    transition: transform 0.8s, box-shadow 0.8s;
+    z-index: 50;
+}
+
+.header-mobile-text {
+    margin-block-start: 34px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    align-items: center;
+    font-size: 1.3em;
+    font-family: "Edu VIC WA NT Beginner", cursive;
+    font-weight: bold;
+
+}
+.menu-open-display{
+    transform: translateX(400px);
+    box-shadow: -8px 0px 20px rgba(104, 104, 104, 0.15);
+}
+.header-mobile-text>*:hover {
+    transform: scale(1.1);
+    background-color: $logotextclr;
+
+    padding: 0 14px;
+}
+
+.header-mobile-text * {
+    transition: all 0.3s;
+    border-radius: 5px;
+}
+
+.x-mobile-btn{
+    font-size: large;
+    cursor: pointer;
+}
+
