@@ -48,11 +48,12 @@ export function ToyIndex() {
         setSortBy(sortBy)
     }
 
-    function onDeleteToy(toyId) {
-        removeToy(toyId)
-            .catch(() => {
-                console.log('Could not remove toy')
-            })
+    async function onDeleteToy(toyId) {
+        try {
+            await removeToy(toyId)
+        } catch (err) {
+            console.log('Could not remove toy', err)
+        }
     }
 
 

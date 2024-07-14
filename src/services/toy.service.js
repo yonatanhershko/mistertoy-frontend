@@ -12,9 +12,9 @@ const labels = [
     'Puzzle',
     'Outdoor',
     'Battery Powered',
-  ]
-  
-  const bgColors = [
+]
+
+const bgColors = [
     'white',
     '#f6e2dd',
     '#f39f76',
@@ -38,7 +38,7 @@ export const toyService = {
     getImportanceStats,
     getBgColors,
     toggleMenu
-  
+
 }
 
 
@@ -115,21 +115,21 @@ function getSortFromSearchParams(searchParams) {
 
 function getToyLabels() {
     return [...labels]
-  }
-  
-  function _getRandomLabels() {
+}
+
+function _getRandomLabels() {
     const labelsCopy = [...labels]
     const randomLabels = []
     for (let i = 0; i < 2; i++) {
-      const randomIdx = Math.floor(Math.random() * labelsCopy.length)
-      randomLabels.push(labelsCopy.splice(randomIdx, 1)[0])
+        const randomIdx = Math.floor(Math.random() * labelsCopy.length)
+        randomLabels.push(labelsCopy.splice(randomIdx, 1)[0])
     }
     return randomLabels
-  }
+}
 
 
 
-  function getBgColors() {
+function getBgColors() {
     return [...bgColors]
 }
 
@@ -140,18 +140,23 @@ function _getRandomBgColor() {
 }
 
 
-  function getImportanceStats() {
-    return httpService.get(BASE_URL)
-        .then(toys => {
-            const toyStatsByLabel = _getToyStatsByLabel(toys)
-            const data = labels.map(label => ({
-                label,
-                toyAmount: toyStatsByLabel[label]?.toyAmount || 0,
-                avgPrice: toyStatsByLabel[label]?.avgPrice || 0
-            }))
-            return data
-        })
+async function getImportanceStats() {
+    try {
+        const toys = await httpService.get(BASE_URL)
+        const toyStatsByLabel = _getToyStatsByLabel(toys)
+        const data = labels.map(label => ({
+            label,
+            toyAmount: toyStatsByLabel[label]?.toyAmount || 0,
+            avgPrice: toyStatsByLabel[label]?.avgPrice || 0
+        }))
+        return data
+    } catch (err) {
+        console.error('Cannot get importance stats:', err)
+        throw err
+    }
 }
+
+
 
 function _getToyStatsByLabel(toys) {
     const toyStatsByLabel = {}

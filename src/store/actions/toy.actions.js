@@ -5,56 +5,52 @@ import { store } from "../store.js"
 import { showToyMsg } from "../../services/event-bus.service.js"
 
 
-export function loadToys(filterBy,sortBy) {
+export async function loadToys(filterBy, sortBy) {
 
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-    return toyService.query(filterBy,sortBy)
-        .then(toys => {
-            store.dispatch({
-                type: SET_TOYS,
-                toys
-            })
+    try {
+        const toys = await toyService.query(filterBy, sortBy)
+        store.dispatch({
+            type: SET_TOYS,
+            toys
         })
-        .catch(err => {
-            console.error('Cannot load toys:', err)
-            throw err
-        })
-        .finally(() => {
-            store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-        })
+    } catch (err) {
+        console.error('Cannot load toys:', err)
+        throw err
+    } finally {
+        store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+    }
 }
 
-export function saveToy(toy) {
+export async function saveToy(toy) {
     const type = (toy._id) ? UPDATE_TOY : ADD_TOY
-    return toyService.save(toy)
-        .then(savedToy => {
-            store.dispatch({
-                type,
-                toy: savedToy
-            })
-            return savedToy
+    try {
+        const savedToy = await toyService.save(toy)
+        store.dispatch({
+            type,
+            toy: savedToy
         })
-        .catch(err => {
-            console.error('Cannot save toy:', err)
-            throw err
-        })
+        return savedToy
+    } catch (err) {
+        console.error('Cannot save toy:', err)
+        throw err
+    }
 }
 
 
 
-export function removeToy(toyId) {
-    return toyService.remove(toyId)
-        .then(() => {
-            store.dispatch({
-                type: REMOVE_TOY,
-                toyId
-            })
-            showToyMsg('Toy Deleted Successfully🦭')
+export async function removeToy(toyId) {
+    try {
+        await toyService.remove(toyId)
+        store.dispatch({
+            type: REMOVE_TOY,
+            toyId
         })
-        .catch(err => {
-            console.error('Cannot remove toy:', err)
-            throw err
-        })
+        showToyMsg('Toy Deleted Successfully🦭')
+    } catch (err) {
+        console.error('Cannot remove toy:', err)
+        throw err
+    }
 }
 
 export function setFilterBy(filterBy) {

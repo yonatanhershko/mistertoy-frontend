@@ -17,13 +17,16 @@ export function ToyEdit() {
         loadToy()
     }, [])
 
-    function loadToy() {
-        if (params.toyId) {
-            toyService.get(params.toyId)
-                .then(setToyToEdit)
-                .catch(err => console.log('err:', err))
-        } else {
-            setToyToEdit(toyService.getEmptyToy())
+    async function loadToy() {
+        try {
+            if (params.toyId) {
+                const toy = await toyService.get(params.toyId)
+                setToyToEdit(toy)
+            } else {
+                setToyToEdit(toyService.getEmptyToy())
+            }
+        } catch (err) {
+            console.log('err:', err)
         }
     }
 
@@ -38,20 +41,17 @@ export function ToyEdit() {
         labels: Yup.array().of(Yup.string()),
     })
 
-    const onSubmit = (values, { setSubmitting }) => {
-        toyService.save(values)
-            .then((savedToy) => {
-                navigate('/toy')
-                // showSuccessMsg(`Toy ${params.toyId ? 'Updated' : 'Added'} (id: ${savedToy._id})`)
-            })
-            .catch(err => {
-                // showErrorMsg('Cannot save toy')
-                console.log('err:', err)
-            })
-            .finally(() => {
-
-                setSubmitting(false)
-            })
+    const onSubmit = async (values, { setSubmitting }) => {
+        try {
+            const savedToy = await toyService.save(values)
+            navigate('/toy')
+            // showSuccessMsg(`Toy ${params.toyId ? 'Updated' : 'Added'} (id: ${savedToy._id})`)
+        } catch (err) {
+            // showErrorMsg('Cannot save toy')
+            console.log('err:', err)
+        } finally {
+            setSubmitting(false)
+        }
     }
 
     if (!toyToEdit) return <div className="loader-container"><span className="loader"></span></div>

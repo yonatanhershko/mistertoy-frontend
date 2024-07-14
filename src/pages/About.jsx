@@ -6,7 +6,7 @@ import GoogleMapReact from 'google-map-react';
 const AnyReactComponent = ({ text }) => <div style={{ fontSize: '2em' }}>{text}</div>;
 const shopBranches = [
     { id: 1, name: '🦛', place: 'תל-אביב', coords: { lat: 32.0853, lng: 34.7818 } },
-    { id: 2, name: '🐲', place: 'אילת', coords: { lat: 29.55805, lng: 34.94821 } },
+    { id: 2, name: '🐬', place: 'אילת', coords: { lat: 29.55805, lng: 34.94821 } },
     { id: 3, name: '🦔', place: 'עפולה', coords: { lat: 32.6074, lng: 35.2882 } },
     { id: 4, name: '🐫', place: 'באר-שבע', coords: { lat: 31.25297, lng: 34.79146 } }
 ]
