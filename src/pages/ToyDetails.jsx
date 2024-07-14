@@ -37,7 +37,6 @@ export function ToyDetails() {
     if (isLoading) return <div className="loader-container"><span className="loader"></span></div>
     return (
         <section className='details-container' style={{ backgroundColor: toy.bgColor }}>
-        <section className='details-container' style={{ backgroundColor: toy.bgColor }}>
             <img src={generateRobohashUrl(toy._id)} alt={toy.name} style={{ width: '100px', height: '100px' }} />
             <h1>Toy Details</h1>
             <p>Name: {toy.name}</p>
