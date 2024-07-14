@@ -16,6 +16,7 @@ import { UserMsg } from "../src/cmps/UserMsg.jsx"
 
 
 import "../src/assets/style/main.scss"
+import { AppFooter } from './cmps/AppFooter.jsx'
 
 export function App() {
 

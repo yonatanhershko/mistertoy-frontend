@@ -38,7 +38,6 @@ export const toyService = {
     getImportanceStats,
     getBgColors,
     toggleMenu
-
 }
 
 
